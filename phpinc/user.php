@@ -20,7 +20,7 @@
     
     private function create_table(){
         $user_table = " CREATE TABLE user(
-            sn int(20) PRIMARY KEY NOT NULL AUTO INCREMENT,
+            sn int(20) PRIMARY KEY NOT NULL AUTO_INCREMENT,
             fname varchar(100) NOT NULL,
             lname varchar(100) NOT NULL,
             user_id varchar(100) NOT NULL,
