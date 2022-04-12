@@ -71,8 +71,7 @@
         }
         else{
             $login_message = "Are you sure you have an account with us? Maybe ";
-            
+            header("location: login.php");
         }
     }
-    echo $login_message;
     ?>
