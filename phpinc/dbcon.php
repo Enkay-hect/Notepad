@@ -1,12 +1,14 @@
 <?php
 
 class DatabaseConnection{
-
-  $this->servername = "localhost";
-  $this->username = "Enkay";
-  $this->password = "07080987528";
-  $this->database = "notepad";
-
+  function __construct()
+  {
+    $this->servername = "localhost";
+    $this->username = "Enkay";
+    $this->password = "07080987528";
+    $this->database = "notepad";
+  }
+  
   //Function to be called anytime a connection is required
   public function connect(){
 

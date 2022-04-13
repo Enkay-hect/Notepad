@@ -1,6 +1,6 @@
 <?php
 
-include_once "../dbcon.php"
+include_once "../dbcon.php";
 
 class CreateTables extends DatabaseConnection{
 

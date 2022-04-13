@@ -1,6 +1,6 @@
 <?php
 include_once "dbcon.php";
-include_once "helpers/create_tables.php"
+include_once "helpers/create_tables.php";
 
 // Users class
  class Users{
@@ -32,7 +32,7 @@ include_once "helpers/create_tables.php"
         $dated = date("y/m/d/h/m/s");
 
         /// TO DO :: USE FULL NAMES FOR TABLE COLUMS EG FIRSTNAME NOT FNAME
-        $user = "INSERT INTO `users`(`fname`, `lname`, `user_id`, `email`, `password`, `date_created`)
+        $user = "INSERT INTO `users`(`firstname`, `lastname`, `user_id`, `email`, `password`, `date_created`)
         VALUES ('$this->fname','$this->lname','$this->user_name','$this->email','$this->password ','$dated');";
         return $user;
     }
