@@ -1,7 +1,9 @@
-<?php include_once "dbcon.php";
+<?php
+include_once "dbcon.php";
+include_once "helpers/create_tables.php"
 
-// creating an admin class
- class admin{
+// Users class
+ class Users{
      //var decleration
     public $fname;
     public $lname;
@@ -19,22 +21,18 @@
         $this->email = $email;
         $this->password = $password;
     }
-    
+
     private function create_table(){
-        $user_table = " CREATE TABLE `users`(
-            sn int(20) PRIMARY KEY NOT NULL AUTO_INCREMENT,
-            fname varchar(100) NOT NULL,
-            lname varchar(100) NOT NULL,
-            user_id varchar(100) NOT NULL,
-            email varchar(255) NOT NULL,
-            password varchar(255) NOT NULL,
-            date_created datetime NOT NULL
-        )";
-        return $user_table;
+
+        $creator = new CreateTables;
+        $creator->create_users_table();
     }
+
     public function create_user(){
         $dated = date("y/m/d/h/m/s");
-        $user = "INSERT INTO `users`(`fname`, `lname`, `user_id`, `email`, `password`, `date_created`) 
+
+        /// TO DO :: USE FULL NAMES FOR TABLE COLUMS EG FIRSTNAME NOT FNAME
+        $user = "INSERT INTO `users`(`fname`, `lname`, `user_id`, `email`, `password`, `date_created`)
         VALUES ('$this->fname','$this->lname','$this->user_name','$this->email','$this->password ','$dated');";
         return $user;
     }
@@ -49,6 +47,8 @@
 
 
 
+  /// TO DO :: Move this( The connection and sql query) into a class function for $login_message
+  /// TO DO :: REDIRECT TO INDEX PAGE AFTER SUCCESSFUL LOGIN..
 
     $login_message = " Don't have an account?";
     // Check if the form is submitted
@@ -56,8 +56,8 @@
         // Remove back slashes from the input
         $username = stripslashes($_REQUEST['username']) ;
         $password = stripslashes($_REQUEST['password']) ;
-        
-        
+
+
         $username = mysqli_real_escape_string($conn, $_REQUEST['username']);
         $password = mysqli_real_escape_string($conn, $_REQUEST['password']);
 

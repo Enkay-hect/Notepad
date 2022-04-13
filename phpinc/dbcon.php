@@ -1,15 +1,27 @@
 <?php
- $servername = "localhost";
- $username = "Enkay";
- $password = "07080987528";
- $database = "notepad";
+
+class DatabaseConnection{
+
+  $this->servername = "localhost";
+  $this->username = "Enkay";
+  $this->password = "07080987528";
+  $this->database = "notepad";
+
+  //Function to be called anytime a connection is required
+  public function connect(){
+
+    $conn = new mysqli($this->servername, $this->username, $this->password, $this->database);
 
 
-$conn = new mysqli($servername, $username, $password, $database);
+    if ($conn->connect_error) {
+      die("Connection failed: " . $conn->connect_error);
+    }
 
+    return $conn;
+    //echo "Connected successfully";
+  }
 
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
 }
-echo "Connected successfully";
+
+
 ?>
