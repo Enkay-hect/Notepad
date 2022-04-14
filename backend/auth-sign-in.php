@@ -47,19 +47,19 @@
                         <div class="row">
                            <div class="col-lg-12">
                               <div class="floating-label form-group">
-                                 <input class="floating-input form-control" type="email" placeholder=" ">
+                                 <input class="floating-input form-control" type="email" name="email" placeholder=" ">
                                  <label>Email</label>
                               </div>
                            </div>
                            <div class="col-lg-12">
                               <div class="floating-label form-group">
-                                 <input class="floating-input form-control" type="password" placeholder=" ">
+                                 <input class="floating-input form-control" type="password" placeholder=" " name="password">
                                  <label>Password</label>
                               </div>
                            </div>
                            <div class="col-lg-6">
                               <div class="custom-control custom-checkbox mb-3 text-left">
-                                 <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                 <input type="checkbox" class="custom-control-input" id="customCheck1" name="remember">
                                  <label class="custom-control-label" for="customCheck1">Remember Me</label>
                               </div>
                            </div>
@@ -67,7 +67,7 @@
                               <a href="auth-recoverpw.html" class="text-primary float-right">Forgot Password?</a>
                            </div>
                         </div>
-                        <button type="submit" class="btn btn-primary">Sign In</button>
+                        <button type="submit" class="btn btn-primary" name="login">Sign In</button>
                         <p class="mt-3 mb-0">
                            Create an Account <a href="auth-sign-up.html" class="text-primary"><b>Sign Up</b></a>
                         </p>

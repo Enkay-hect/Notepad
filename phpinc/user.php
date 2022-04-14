@@ -1,5 +1,5 @@
 <?php
-include_once "dbcon.php";
+include_once 'dbcon.php';
 include_once "helpers/create_tables.php";
 
 // Users class
@@ -21,6 +21,7 @@ include_once "helpers/create_tables.php";
         $this->email = $email;
         $this->password = $password;
         $this->sql   = "SELECT * FROM `users` WHERE user_id='$user_name' AND password='$password'";
+        $this->create_table();
     }
 
     private function create_table(){
@@ -52,11 +53,11 @@ include_once "helpers/create_tables.php";
             $_SESSION['username'] = $this->username;
             $_SESSION['password'] = $this->password;
             // go to dashboard when the login is successful
-            header("location: ../backend/index.html");
+            //header("location: ../backend/index.php");
         }
         else{
             // stay in the login page when the login is not successful
-           // header("location: login.php");
+            //header("location: ../backend/auth-sign-in.php");
         }
     }
     public function login_message(){
@@ -68,7 +69,6 @@ include_once "helpers/create_tables.php";
     }
 
 }
-
 
 
   /// TO DO :: Move this( The connection and sql query) into a class function for $login_message
