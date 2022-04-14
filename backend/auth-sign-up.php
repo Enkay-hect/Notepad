@@ -43,35 +43,35 @@
                      </div>  
                      <h3 class="mb-2">Sign Up</h3>
                      <p>Create your  account.</p>
-                     <form>
+                     <form action="phpinc/registration.php" method="POST">
                         <div class="row">
                            <div class="col-lg-6">
                               <div class="floating-label form-group">
-                                 <input class="floating-input form-control" type="text" placeholder=" ">
-                                 <label>Full Name</label>
+                                 <input class="floating-input form-control" type="text" placeholder=" " name="fname">
+                                 <label>First Name</label>
                               </div>
                            </div>
                            <div class="col-lg-6">
                               <div class="floating-label form-group">
-                                 <input class="floating-input form-control" type="text" placeholder=" ">
+                                 <input class="floating-input form-control" type="text" placeholder=" " name="lname">
                                  <label>Last Name</label>
                               </div>
                            </div>
                            <div class="col-lg-12">
                               <div class="floating-label form-group">
-                                 <input class="floating-input form-control" type="email" placeholder=" ">
+                                 <input class="floating-input form-control" type="email" placeholder=" " name="email"> 
                                  <label>Email</label>
                               </div>
                            </div>
                            <div class="col-lg-6">
                               <div class="floating-label form-group">
-                                 <input class="floating-input form-control" type="password" placeholder=" ">
+                                 <input class="floating-input form-control" type="password" placeholder=" " name="password">
                                  <label>Password</label>
                               </div>
                            </div>
                            <div class="col-lg-6">
                               <div class="floating-label form-group">
-                                 <input class="floating-input form-control" type="password" placeholder=" ">
+                                 <input class="floating-input form-control" type="password" placeholder=" " name="password">
                                  <label>Confirm Password</label>
                               </div>
                            </div>
@@ -84,7 +84,8 @@
                         </div>
                         <button type="submit" class="btn btn-primary">Sign Up</button>
                         <p class="mt-3 mb-0">
-                           Already have an Account <a href="auth-sign-in.html" class="text-primary"><b>Sign In</b></a>
+                           Already have an Account 
+                           <button  type="submit" name="submit"><a href="auth-sign-in.html" class="text-primary"><b>Sign In</b></a></button>
                         </p>
                      </form>
                   </div>

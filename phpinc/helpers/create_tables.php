@@ -7,7 +7,7 @@ class CreateTables extends DatabaseConnection{
   public function create_users_table(){
 
     // CREATE SQL QUERY
-    $create_query = "CREATE TABLE `users` IF NOT EXISTS (
+    $create_query = "CREATE TABLE IF NOT EXISTS  `users`(
         id int(20) PRIMARY KEY NOT NULL AUTO_INCREMENT,
         firstname varchar(100) NOT NULL,
         lastname varchar(100) NOT NULL,
