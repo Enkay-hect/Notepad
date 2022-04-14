@@ -1,6 +1,11 @@
 <?php
+<<<<<<< HEAD
 include_once 'dbcon.php';
 include_once "helpers/create_tables.php";
+=======
+include_once "dbcon.php";
+include "helpers/create_tables.php";
+>>>>>>> 7de8d1ff4c8595351556de90ae6ef549a02135a9
 
 // Users class
  class Users{
@@ -20,8 +25,14 @@ include_once "helpers/create_tables.php";
         $this->user_name = $user_name;
         $this->email = $email;
         $this->password = $password;
+<<<<<<< HEAD
         $this->sql   = "SELECT * FROM `users` WHERE user_id='$user_name' AND password='$password'";
         $this->create_table();
+=======
+
+        $this->create_table();
+        // $this->sql   = "SELECT * FROM `users` WHERE user_id='$user_name' AND password='$password'";
+>>>>>>> 7de8d1ff4c8595351556de90ae6ef549a02135a9
     }
 
     private function create_table(){
@@ -71,6 +82,10 @@ include_once "helpers/create_tables.php";
 }
 
 
+<<<<<<< HEAD
+=======
+$da = new Users('nonne','niete','goth','uhweu','uiwhioejie','tuhhwie');
+>>>>>>> 7de8d1ff4c8595351556de90ae6ef549a02135a9
   /// TO DO :: Move this( The connection and sql query) into a class function for $login_message
   
   /// TO DO :: REDIRECT TO INDEX PAGE AFTER SUCCESSFUL LOGIN..
