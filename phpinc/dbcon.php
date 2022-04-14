@@ -18,9 +18,9 @@ class DatabaseConnection{
     if ($conn->connect_error) {
       die("Connection failed: " . $conn->connect_error);
     }
-
-    return $conn;
     //echo "Connected successfully";
+    return $conn;
+
   }
 
 }
