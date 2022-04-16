@@ -1,11 +1,6 @@
 <?php
-<<<<<<< HEAD
-include_once 'dbcon.php';
-include_once "helpers/create_tables.php";
-=======
 include_once "dbcon.php";
-include "helpers/create_tables.php";
->>>>>>> 7de8d1ff4c8595351556de90ae6ef549a02135a9
+include_once "helpers/create_tables.php";
 
 // Users class
  class Users{
@@ -17,24 +12,31 @@ include "helpers/create_tables.php";
     private $password;
     public $midname;
 
-    function __construct($fname, $lname, $midname, $user_name, $email, $password)
+    function __construct()
     {
-        $this->fname = $fname;
-        $this->lname = $lname;
-        $this->midname = $midname;
-        $this->user_name = $user_name;
-        $this->email = $email;
-        $this->password = $password;
-<<<<<<< HEAD
-        $this->sql   = "SELECT * FROM `users` WHERE user_id='$user_name' AND password='$password'";
+        //here the function is invoked anytime the User clss is called
         $this->create_table();
-=======
-
-        $this->create_table();
-        // $this->sql   = "SELECT * FROM `users` WHERE user_id='$user_name' AND password='$password'";
->>>>>>> 7de8d1ff4c8595351556de90ae6ef549a02135a9
+    }
+    
+    //these set of funtions will set the users informations
+    public function set_first_name($firstname){
+        $this->firstname = $firstname;
     }
 
+    public function set_last_name($lastname){
+        $this->lastname = $lastname;
+    }
+
+    public function set_email($email){
+        $this->email = $email ;
+    }
+
+    protected function set_password($password){
+        $this->password = $password;
+    }
+
+
+    // This function calls the Users class and creates table if it does not exist 
     private function create_table(){
 
         $creator = new CreateTables;
@@ -42,38 +44,76 @@ include "helpers/create_tables.php";
     }
 
     public function create_user(){
-        $dated = date("y/m/d/h/m/s");
-
         /// TO DO :: USE FULL NAMES FOR TABLE COLUMS EG FIRSTNAME NOT FNAME
-        $user = "INSERT INTO `users`(`firstname`, `lastname`, `user_id`, `email`, `password`, `date_created`)
-        VALUES ('$this->fname','$this->lname','$this->user_name','$this->email','$this->password ','$dated');";
-        return $user;
+        $sql = "INSERT INTO `users`(`firstname`, `lastname`, `email`, `password`)
+        VALUES ('$this->firstname','$this->lastname','$this->email','" .md5($this->password). "');";
+        $host = new DatabaseConnection();
+        $con = $host->connect();
+        $result = $con->query($sql);
+        return $result;
     }
-    public function name(){
-        return "$this->lname, $this->fname $this->midname";
-    }
-    public function email(){
-        return $this->email;
-    }
-    public function sql_connect(){
-        $dbcon = new DatabaseConnection();
 
-        $result = mysqli_query($dbcon->connect(), $this->sql)  or die('Access denied! <br>');
-        $rows = mysqli_num_rows($result);
-        if($rows == 1){
+    public function check_user_email(){
+
+        //select all the emails on the database
+        $sql = "SELECT `email` FROM `users`";
+        $host = new DatabaseConnection();
+        $con = $host->connect();
+        $result = $con->query($sql);
+
+        if ($result->num_rows > 0){
+            //fetch the emails in the database into an array and assign the to the variable 'emails'
+            $emails  = $result->fetch_assoc();
+
+            foreach ($emails as $value){
+                if($value == $this->email){
+                    return true;
+                }else{
+                    return false;
+                }
+            }
+        }
+    }
+    public function grant_passage(){
+        $sql = "SELECT * FROM `users` WHERE `email`= '$this->email' AND `password`='$this->password';";
+        $host = new DatabaseConnection();
+        $con = $host->connect();
+        $result = $con->query($sql);
+        if($result->num_rows > 0){
+            $info  = $result->fetch_assoc();
+            $this->set_first_name($info['firstname']);
+            $this->set_last_name($info['lastname']);
+
+            // greate as session to hold the username and password
             $_SESSION['username'] = $this->username;
             $_SESSION['password'] = $this->password;
-            // go to dashboard when the login is successful
-            //header("location: ../backend/index.php");
         }
-        else{
-            // stay in the login page when the login is not successful
-            //header("location: ../backend/auth-sign-in.php");
-        }
+        
     }
+    public function get_name(){
+        return "$this->lastname, $this->firstname";
+    }
+    public function get_email(){
+        return $this->email;
+    }
+    // public function sql_connect(){
+    //     $dbcon = new DatabaseConnection();
+
+    //     $result = mysqli_query($dbcon->connect(), $this->sql)  or die('Access denied! <br>');
+    //     $rows = mysqli_num_rows($result);
+    //     if($rows == 1){
+    //        
+    //         // go to dashboard when the login is successful
+    //         //header("location: ../backend/index.php");
+    //     }
+    //     else{
+    //         // stay in the login page when the login is not successful
+    //         //header("location: ../backend/auth-sign-in.php");
+    //     }
+    // }
     public function login_message(){
         $login_message = " Don't have an account?";
-        if (!$this->sql_connect()){
+        if (!$this->check_user_email()){
             $login_message = "Are you sure you have an account with us? Maybe ";  
         }
         return $login_message;
@@ -81,11 +121,9 @@ include "helpers/create_tables.php";
 
 }
 
+//create new user
+$user = new Users;
 
-<<<<<<< HEAD
-=======
-$da = new Users('nonne','niete','goth','uhweu','uiwhioejie','tuhhwie');
->>>>>>> 7de8d1ff4c8595351556de90ae6ef549a02135a9
   /// TO DO :: Move this( The connection and sql query) into a class function for $login_message
   
   /// TO DO :: REDIRECT TO INDEX PAGE AFTER SUCCESSFUL LOGIN..

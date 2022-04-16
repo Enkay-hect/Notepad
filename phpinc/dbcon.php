@@ -1,4 +1,7 @@
 <?php
+
+use LDAP\Result;
+
 class DatabaseConnection{
   function __construct()
   {
@@ -24,10 +27,9 @@ class DatabaseConnection{
 
 }
 $host = new DatabaseConnection();
-function treat_input($data,$host = $host){
-  $data = stripslashes($data);
-  $data = mysqli_real_escape_string($host->connect(),$data);
-  return $data;
-}
+$con = $host->connect();
+
+
+
 
 ?>

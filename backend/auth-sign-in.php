@@ -1,4 +1,8 @@
-
+<?php
+include_once'../phpinc/dbcon.php' ;
+include_once'../phpinc/user.php' ;
+include_once'../phpinc/helpers/create_tables.php';
+?>
 
 
 <!doctype html>
@@ -43,7 +47,7 @@
                      </div>      
                      <h3 class="mb-2">Sign In</h3>
                      <p>Login to stay connected.</p>
-                     <form>
+                     <form method="POST" action="../login_script.php">
                         <div class="row">
                            <div class="col-lg-12">
                               <div class="floating-label form-group">
@@ -69,7 +73,7 @@
                         </div>
                         <button type="submit" class="btn btn-primary" name="login">Sign In</button>
                         <p class="mt-3 mb-0">
-                           Create an Account <a href="auth-sign-up.html" class="text-primary"><b>Sign Up</b></a>
+                           <?php echo $user->login_message();?> <a href="auth-sign-up.html" class="text-primary"><b>Sign Up</b></a>
                         </p>
                      </form>
                   </div>

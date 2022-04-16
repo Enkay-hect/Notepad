@@ -1,22 +1,14 @@
 <?php
-
-include_once "../dbcon.php";
-
+//include_once "dbcon.php";
 
 class CreateTables extends DatabaseConnection{
 
   public function create_users_table(){
 
     // CREATE SQL QUERY
-<<<<<<< HEAD
-    $create_query = "CREATE TABLE IF NOT EXISTS `users` (
-=======
-<<<<<<< HEAD
-    $create_query = "CREATE TABLE if not exists `users`  (
-=======
+
+
     $create_query = "CREATE TABLE IF NOT EXISTS  `users`(
->>>>>>> f2cf41702a2d84b1102e558bff5886edcd6f686d
->>>>>>> 7de8d1ff4c8595351556de90ae6ef549a02135a9
         id int(20) PRIMARY KEY NOT NULL AUTO_INCREMENT,
         firstname varchar(100) NOT NULL,
         lastname varchar(100) NOT NULL,
@@ -39,9 +31,6 @@ class CreateTables extends DatabaseConnection{
   }
 
 }
-<<<<<<< HEAD
-$create_table = new CreateTables();
-=======
-
->>>>>>> 7de8d1ff4c8595351556de90ae6ef549a02135a9
+// $create = new CreateTables;
+// var_dump($create->create_users_table());
  ?>
