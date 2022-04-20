@@ -3,18 +3,15 @@ include_once "dbcon.php";
 include_once "helpers/create_tables.php";
 
 
-// TO DO :: ADD COMMENT TO EVERY FUNCTION FOR BETTER EXPLANATION
-// TO DO :: ADD REGISTRATION FUNCTIONS AS WELL
+
 
 // Users class
- class Users{
+class Users{
      //var decleration
-    public $fname;
-    public $lname;
-    public $user_name;
+    public $firstname;
+    public $lastname;
     protected $email;
     private $password;
-    public $midname;
 
     function __construct()
     {
@@ -35,7 +32,7 @@ include_once "helpers/create_tables.php";
         $this->email = $email ;
     }
 
-    protected function set_password($password){
+    private function set_password($password){
         $this->password = $password;
     }
 
@@ -47,8 +44,8 @@ include_once "helpers/create_tables.php";
         $creator->create_users_table();
     }
 
-    public function create_user(){
-        /// TO DO :: USE FULL NAMES FOR TABLE COLUMS EG FIRSTNAME NOT FNAME
+    public function create_user(){//to create a user
+
         $sql = "INSERT INTO `users`(`firstname`, `lastname`, `email`, `password`)
         VALUES ('$this->firstname','$this->lastname','$this->email','" .md5($this->password). "');";
         $host = new DatabaseConnection();
@@ -57,40 +54,47 @@ include_once "helpers/create_tables.php";
         return $result;
     }
 
-    public function check_user_email(){
+    // this will the email & passwrod and call the rest of the fuctions in their sequence for a successful login
+    public function login($email, $password){
+        $this->set_password($password);
+        $this->set_email($email);
+        // check if the email exists on the database
+        if($this->check_user()){
 
-        // TO DO :: DO NOT SELECT ALL EMAILS.. SELECT SPECIFIC EMAIL
+            $this->grant_passage();// check the email with the password and collect the basic user info
+            header('location: ../backend/index.php'); //redirect to the dashboard        
+        }else{
 
-        //select all the emails on the database
-        $sql = "SELECT `email` FROM `users`";
+            header('location: ../backend/auth-sign-in.php');
+        }
+    }  
+     
+    // to check the email and password
+    public function check_user(){
+        
+        //select the email on the database for checking
+        $sql = "SELECT * FROM users WHERE email = '$this->email';";
         $host = new DatabaseConnection();
         $con = $host->connect();
         $result = $con->query($sql);
 
-        // TO DO :: HANDLE BOTH SUCCESS AND ERROR CASES
-        if ($result->num_rows > 0){
-            //fetch the emails in the database into an array and assign the to the variable 'emails'
-            $emails  = $result->fetch_assoc();
+        //check if such email exists in the datatbase
+        if( $result->num_rows == 1){
 
-            // TO DO :: UNECESSARY
+        $userdata = $result->fetch_assoc();
 
-            foreach ($emails as $value){
-                if($value == $this->email){
-                    return true;
-                }else{
-                    return false;
-                }
-            }
+        if( $this->password == $userdata['password'] ){
+            return true;
+        }else{
+            return false;
+        }
 
-            //--------------------
+        }else{
+            return false;
         }
     }
+    
     public function grant_passage(){
-
-        // TO DO :: CHECK FOR USERNAME AND PASSWORD SEPERATELY
-        // $host = new DatabaseConnection();
-        //
-        // $this->set_email(mysqli_real_escape_string($host->connect(),$email));
 
         $sql = "SELECT * FROM `users` WHERE `email`= '$this->email' AND `password`='$this->password';";
         $host = new DatabaseConnection();
@@ -104,7 +108,7 @@ include_once "helpers/create_tables.php";
             // greate as session to hold the email
             $_SESSION['email'] = $this->email;
 
-            return true;
+            return $info;
         }else{
           return false;
         }
@@ -122,21 +126,41 @@ include_once "helpers/create_tables.php";
 
     public function login_message(){
         $login_message = " Don't have an account?";
-        if (!$this->check_user_email()){
+        if (!$this->check_user()){
             $login_message = "Are you sure you have an account with us? Maybe ";
+        }else{
+            return $login_message;
         }
-        return $login_message;
+    } 
+    public function check_user_email(){
+        //select the email on the database for checking
+        $sql = "SELECT `email` FROM `users` WHERE `email`='$this->email'";
+        $host = new DatabaseConnection();
+        $con = $host->connect();
+        $result = $con->query($sql);
+        //check if such email exists in the database
+        if ($result->num_rows == 1){
+            return true;
+        }else{
+            return false;
+        }
     }
 
-}
+    public function register($firstname,$lastname, $email, $password){
+        $this->set_first_name($firstname);
+        $this->set_last_name($lastname);
+        $this->set_email($email);
+        $this->set_password($password);
+        if(!$this->check_user_email()){
+            $this->create_user();
+            return true;
+        }else{
+            return false;
+        }
+    }
+} 
 
-// to do :: DO NOT CREATE A STATIC VARIABLE WHEN WORKING WITH MORE THAN ONE FUNCTION
-
-//create new user
-$user = new Users;
-
-  /// TO DO :: Move this( The connection and sql query) into a class function for $login_message
-
-  /// TO DO :: REDIRECT TO INDEX PAGE AFTER SUCCESSFUL LOGIN..
+    
+    
 
 ?>

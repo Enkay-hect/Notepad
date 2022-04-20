@@ -1,6 +1,5 @@
 <?php
 
-use LDAP\Result;
 
 class DatabaseConnection{
   function __construct()
