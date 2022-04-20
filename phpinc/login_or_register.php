@@ -24,6 +24,31 @@ if (isset($_POST["login"])){
     // call the user object
     $user = new Users;
     $user->login($email,$password);
+
+}
+elseif(isset($_POST['register'])){
+
+    //gets data from the forms
+    $firstname = $_POST['firstname'];
+    $lastname = $_POST['lastname'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    // handle the inputs
+    $firstname = treat_input($firstname);
+    $lastname = treat_input($lastname);
+    $email = treat_input($email);
+    $password = treat_input($password);
+
+    // call the user object
+    $user = new Users;
+    $register = $user->register($firstname,$lastname, $email, $password,);
+
+    if($register){
+        header('location: ..backend/auth-sign-in.php');
+    }else{
+        return false;
+    }
 }
 
 ?>
