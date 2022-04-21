@@ -1,13 +1,14 @@
 <?php
-include_once'phpinc/dbcon.php' ;
-include_once'phpinc/user.php' ;
-include_once'phpinc/create_tables.php';
+include_once 'phpinc/dbcon.php' ;
+include_once 'phpinc/user.php' ;
+include_once 'phpinc/create_tables.php';
+include_once 'phpinc/create_tables.php';
 
 function treat_input($data){
     $data = stripslashes($data);
     return $data;
 }
-    //check if the lpgin button is clicked
+    //check if the login button is clicked
     if (isset($_REQUEST["login"])){
 
         $email = $_REQUEST['email'];

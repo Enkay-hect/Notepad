@@ -1,6 +1,7 @@
 <?php
 include_once "dbcon.php";
 include_once "helpers/create_tables.php";
+include_once "notetable.php";
 
 // Users class
  class Users{
@@ -62,7 +63,7 @@ include_once "helpers/create_tables.php";
         $result = $con->query($sql);
 
         if ($result->num_rows > 0){
-            //fetch the emails in the database into an array and assign the to the variable 'emails'
+            //fetch the emails in the database into an array and assign them to the variable 'emails'
             $emails  = $result->fetch_assoc();
 
             foreach ($emails as $value){
@@ -84,7 +85,7 @@ include_once "helpers/create_tables.php";
             $this->set_first_name($info['firstname']);
             $this->set_last_name($info['lastname']);
 
-            // greate as session to hold the username and password
+            // create as session to hold the username and password
             $_SESSION['username'] = $this->username;
             $_SESSION['password'] = $this->password;
         }
