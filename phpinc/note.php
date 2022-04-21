@@ -1,23 +1,24 @@
 <?php
 
 include_once "dbcon.php";
+include_once "helpers/create_tables.php";
 
 
-class Users{
+class Notes{
 
- protected $categories;
- protected $content;
+ public $categories;
+ public $content;
 
-      function __construct()
-      {
-          $this->create_notes();
-      }
+  public function __construct()
+  {
+      $this->create_notes();
+  }
 
-      function create_notes(){
+  public function create_notes(){
 
         $creator = new CreateTables;
-        $creator->create_users_note()();
-      }
+        $creator->create_notes_table();
+   }
 
       public function set_categories($categories){
         $this->categories = $categories;
@@ -27,4 +28,6 @@ class Users{
       $this->content = $content;
   }
 }
+
+$note = new Notes
 ?>

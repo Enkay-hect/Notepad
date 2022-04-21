@@ -1,5 +1,5 @@
 <?php
-include_once "dbcon.php";
+include_once "./dbcon.php";
 
 class CreateTables extends DatabaseConnection{
 
@@ -30,12 +30,12 @@ class CreateTables extends DatabaseConnection{
 
   }
 
-  public function create_users_note(){
+  public function create_notes_table(){
 
    
     $note_query = "CREATE TABLE IF NOT EXISTS  `notes`(
         id int(20) PRIMARY KEY NOT NULL AUTO_INCREMENT,
-        categories text(100) NOT NULL,
+        category_id text(100) NOT NULL,
         content text(10000) NOT NULL,
         date_created datetime NOT NULL
     );";
