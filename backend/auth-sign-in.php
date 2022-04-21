@@ -47,7 +47,7 @@ include_once'../phpinc/helpers/create_tables.php';
                      </div>      
                      <h3 class="mb-2">Sign In</h3>
                      <p>Login to stay connected.</p>
-                     <form method="POST" action="../login_script.php">
+                     <form method="POST" action="../login_or_register.php">
                         <div class="row">
                            <div class="col-lg-12">
                               <div class="floating-label form-group">

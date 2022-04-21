@@ -43,7 +43,7 @@
                      </div>  
                      <h3 class="mb-2">Sign Up</h3>
                      <p>Create your  account.</p>
-                     <form action="phpinc/registration.php" method="POST">
+                     <form action="../phpinc/login_or_register.php" method="POST">
                         <div class="row">
                            <div class="col-lg-6">
                               <div class="floating-label form-group">
@@ -85,7 +85,7 @@
                         <button type="submit" class="btn btn-primary">Sign Up</button>
                         <p class="mt-3 mb-0">
                            Already have an Account 
-                           <button  type="submit" name="submit"><a href="auth-sign-in.html" class="text-primary"><b>Sign In</b></a></button>
+                           <button  type="submit" name="register"><a href="auth-sign-in.html" class="text-primary"><b>Sign In</b></a></button>
                         </p>
                      </form>
                   </div>
