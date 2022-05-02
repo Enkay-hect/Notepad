@@ -1,7 +1,7 @@
 <?php
 include_once "dbcon.php";
 include_once "helpers/create_tables.php";
-include_once "notetable.php";
+include_once "note.php";
 
 // Users class
  class Users{
