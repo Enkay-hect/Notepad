@@ -47,7 +47,7 @@ elseif(isset($_POST['register'])){
     if($register){
         header('location: ..backend/auth-sign-in.php');
     }else{
-        return false;
+        header('location: ..backend/auth-sign-up.php');
     }
 }
 

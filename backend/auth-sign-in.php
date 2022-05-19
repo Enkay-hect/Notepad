@@ -1,8 +1,3 @@
-<?php
-include_once'../phpinc/dbcon.php' ;
-include_once'../phpinc/user.php' ;
-include_once'../phpinc/helpers/create_tables.php';
-?>
 
 
 <!doctype html>
