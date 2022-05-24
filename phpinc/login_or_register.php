@@ -1,7 +1,7 @@
 <?php
-include_once'dbcon.php' ;
-include_once'models/user.php' ;
-include_once'helpers/create_tables.php';
+include_once 'dbcon.php' ;
+include_once 'user.php' ;
+include_once 'helpers/create_tables.php';
 
 
 
