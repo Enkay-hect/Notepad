@@ -20,8 +20,12 @@
       <link rel='stylesheet' href='../assets/vendor/fullcalendar/daygrid/main.css' />
       <link rel='stylesheet' href='../assets/vendor/fullcalendar/timegrid/main.css' />
       <link rel='stylesheet' href='../assets/vendor/fullcalendar/list/main.css' />
-      <link rel="stylesheet" href="../assets/vendor/mapbox/mapbox-gl.css">  </head>
-  <body class="noteplus-layout  ">
+      <link rel="stylesheet" href="../assets/vendor/mapbox/mapbox-gl.css">  
+</head>
+  
+<body class="noteplus-layout  ">
+
+
     <!-- loader Start -->
     <div id="loading">
           <div id="loading-center">
@@ -315,6 +319,9 @@
           </div>
       </div>
     </div>
+
+
+
     <!-- Modal -->
     <div class="modal fade" id="create-note" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -1339,14 +1346,15 @@
                     <div class="card-body write-card pb-4">
                         <div class="row">
                             <div class="col-md-8">
-                                <form action="#">
+
+                                <form method="POST" action="../phpinc/note.php">
                                     <div class="form-group">
                                         <label class="label-control">Title</label>
-                                        <input type="text" class="form-control" name="title" placeholder="Example Note" value="" data-change="input" data-custom-target="#note-title">
+                                        <input type="text" class="form-control" name="category_id" placeholder="Example Note" value="" data-change="input" data-custom-target="#note-title">
                                     </div>
                                     <div class="form-group">
                                         <label class="label-control">Description</label>
-                                        <textarea type="text" class="form-control" name="description" rows="3" data-change="input" data-custom-target="#note-description" placeholder="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."></textarea>
+                                        <textarea type="text" class="form-control" name="content" rows="3" data-change="input" data-custom-target="#note-description" placeholder="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."></textarea>
                                     </div>
                                     <div class="form-group">
                                         <label class="label-control">Reminder Date</label>
@@ -1418,7 +1426,7 @@
                                         </svg>
                                         Reset
                                     </button>
-                                    <button type="submit" class="btn btn-primary ml-1">
+                                    <button type="submit" name="save" class="btn btn-primary ml-1">
                                         <svg width="20" class="svg-icon" id="new-note-save" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4" />
                                         </svg>

@@ -24,10 +24,9 @@ class CreateTables extends DatabaseConnection{
 
     if($run_query){
       return true;
+    }else{
+      return false;
     }
-
-    return false;
-
   }
 
   public function create_notes_table(){
@@ -41,14 +40,16 @@ class CreateTables extends DatabaseConnection{
     );";
 
 
-    $conn = $this->connect();
-    $check_query = $conn->query($note_query);
+    $connnn = $this->connect();
+    $check_query = $connnn->query($note_query);
 
     if($check_query){
       return true;
+    }else{
+      return false;
     }
 
-    return false;
+    
 
   }
 

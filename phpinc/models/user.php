@@ -105,7 +105,7 @@ class Users{
             $this->set_first_name($info['firstname']);
             $this->set_last_name($info['lastname']);
 
-            // greate as session to hold the email
+            // create as session to hold the email
             $_SESSION['email'] = $this->email;
 
             return $info;
