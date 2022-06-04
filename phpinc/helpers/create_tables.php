@@ -1,5 +1,10 @@
 <?php
-include_once "./dbcon.php";
+
+if(!class_exists("DatabaseConnection")){
+  include_once "./dbcon.php";
+}
+
+
 
 class CreateTables extends DatabaseConnection{
 
@@ -32,10 +37,13 @@ class CreateTables extends DatabaseConnection{
   public function create_notes_table(){
 
    
-    $note_query = "CREATE TABLE IF NOT EXISTS  `notes`(
+    $note_query = "CREATE TABLE IF NOT EXISTS notes
+    (
         id int(20) PRIMARY KEY NOT NULL AUTO_INCREMENT,
-        category_id text(100) NOT NULL,
+        title text (100) NOT NULL,
         content text(10000) NOT NULL,
+        icons text (50) NOT NULL,
+        reminderdate date NOT NULL,
         date_created datetime NOT NULL
     );";
 
